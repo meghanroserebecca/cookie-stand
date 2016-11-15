@@ -30,7 +30,7 @@ CookieStore.prototype.cookiesByTheHour = function () {
   };
 };
 
-/*CookieStore.prototype.toHTML = function () {
+CookieStore.prototype.toHTML = function () {
   var storeTable = document.getElementById('store_table');
   var tableRow = document.createElement('tr');
   var nameTableHeader = document.createElement('th');
@@ -40,20 +40,23 @@ CookieStore.prototype.cookiesByTheHour = function () {
   tableRow.appendChild(nameTableHeader);
 
   for (var i = 0; i < this.hours.length; i++){
-    var hourlyTableData = document.createElement('td');
-    hourlyTableData.textContent = this.cookiesPerHour;
-    tableRow.appendChild(hourlyTableData);
+    var hourlyTableData1 = document.createElement('td');
+    var hourlyTableData2 = document.createElement('td');
+    hourlyTableData1.textContent = this.hours[i];
+    hourlyTableData2.textContent = this.cookiesPerHour[i];
+    tableRow.appendChild(hourlyTableData1);
+    tableRow.appendChild(hourlyTableData2);
   }
   totalTableData.textContent = this.total;
   tableRow.appendChild(totalTableData);
 
   storeTable.appendChild(tableRow);
-};*/
+};
 
 var pike = new CookieStore('Pike', 23, 65, 6.3);
 console.log(pike);
 pike.cookiesByTheHour();
-//pike.toHTML();
+pike.toHTML();
 console.log(pike.cookiesPerHour);
 console.log(pike.total);
 
