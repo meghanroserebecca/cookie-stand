@@ -1,4 +1,24 @@
 'use strict';
+
+//*as part of an object, consider using a toHTML: function () {
+//   var uL = document.createElement('ul');
+//  var storeNameListItem = document.createElement('li'); <<--THIS CREATES THE NODE
+//  var totalListItem = document.createElement('li');
+//  var hourlyListItem;
+//  var hourMessage;
+//
+//  storeNameListItem.textContent = this.name; <<--THIS UPDATES THE CONTENT OF THE NODE
+//  ul.appendChild(storeNameListItem); <<--THIS PUTS THE NODE WHERE IT NEEDS TO GO
+//  for (var i = 0, i < this.storeHours.length; i++) {
+//    hourlyListItem = document.createElement('li')
+//    hourMessage = this.hours[i] + ': ' + this.salesPerHour[i],
+//     hoursleListItem.textCtntent = hourMessage;
+//    ul.appendChild(hourlyListItem);
+//  }
+//  totalListItem.textContent = 'Total:' + this.total;
+//  ul.appendChild(totalListItem);
+//}
+
 var cookieStoreOne = {
   name: '1st and Pike',
   storeHours: ['6am','7am','8am','9am','10am','11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'],
@@ -18,6 +38,7 @@ var cookieStoreOne = {
       //console.log(this.customersPerHour()); <--how to check stuff
       var numCookies = Math.round(this.customersPerHour() * this.avgCustomerCookieSale);
       this.cookiesPerHour.push(numCookies);
+      //could have put the total update here as ....this.total += numCookies... instead of writing the 2nd function below
     }
     console.log('message', this.cookiesPerHour);
   },
@@ -70,7 +91,7 @@ var cookieStoreTwo = {
     //var total = 0;
     for (var i = 0; i < this.storeHours.length; i++) {
       //console.log(this.customersPerHour()); <--how to check stuff
-      var numCookies = this.customersPerHour() * this.avgCustomerCookieSale;
+      var numCookies = Math.round(this.customersPerHour() * this.avgCustomerCookieSale);
       this.cookiesPerHour.push(numCookies);
     }
     console.log(this.cookiesPerHour);
@@ -85,8 +106,27 @@ var cookieStoreTwo = {
     this.total = sum;
     console.log(this.total);
   },
+  listHourlyCookieSales: function() {
+    var contentArea = document.getElementById('content_area');
+    var ul = document.createElement('ul');
+    var p = document.createElement('p');
+    var li;
+    var li2 = document.createElement('li');
+    p.textContent = this.name;
+    for (var i = 0; i < this.storeHours.length; i++) {
+      li = document.createElement('li');
+      li.textContent = this.storeHours[i] + ': ' + this.cookiesPerHour[i] + ' cookies';
+      ul.appendChild(li);
+    };
+    li2.textContent = 'Total: ' + this.total + ' cookies';
+    ul.appendChild(li2);
+    contentArea.appendChild(p);
+    contentArea.appendChild(ul);
+  }
 };
 
+cookieStoreTwo.sumDailyCookies();
+cookieStoreTwo.listHourlyCookieSales();
 console.log(cookieStoreTwo);
 
 var cookieStoreThree = {
@@ -105,7 +145,7 @@ var cookieStoreThree = {
     //var total = 0;
     for (var i = 0; i < this.storeHours.length; i++) {
       //console.log(this.customersPerHour()); <--how to check stuff
-      var numCookies = this.customersPerHour() * this.avgCustomerCookieSale;
+      var numCookies = Math.round(this.customersPerHour() * this.avgCustomerCookieSale);
       this.cookiesPerHour.push(numCookies);
     }
     console.log(this.cookiesPerHour);
@@ -120,8 +160,27 @@ var cookieStoreThree = {
     this.total = sum;
     console.log(this.total);
   },
+  listHourlyCookieSales: function() {
+    var contentArea = document.getElementById('content_area');
+    var ul = document.createElement('ul');
+    var p = document.createElement('p');
+    var li;
+    var li2 = document.createElement('li');
+    p.textContent = this.name;
+    for (var i = 0; i < this.storeHours.length; i++) {
+      li = document.createElement('li');
+      li.textContent = this.storeHours[i] + ': ' + this.cookiesPerHour[i] + ' cookies';
+      ul.appendChild(li);
+    }
+    li2.textContent = 'Total: ' + this.total + ' cookies';
+    ul.appendChild(li2);
+    contentArea.appendChild(p);
+    contentArea.appendChild(ul);
+  }
 };
 
+cookieStoreThree.sumDailyCookies();
+cookieStoreThree.listHourlyCookieSales();
 console.log(cookieStoreThree);
 
 var cookieStoreFour = {
@@ -140,7 +199,7 @@ var cookieStoreFour = {
     //var total = 0;
     for (var i = 0; i < this.storeHours.length; i++) {
       //console.log(this.customersPerHour()); <--how to check stuff
-      var numCookies = this.customersPerHour() * this.avgCustomerCookieSale;
+      var numCookies = Math.round(this.customersPerHour() * this.avgCustomerCookieSale);
       this.cookiesPerHour.push(numCookies);
     }
     console.log(this.cookiesPerHour);
@@ -155,8 +214,27 @@ var cookieStoreFour = {
     this.total = sum;
     console.log(this.total);
   },
+  listHourlyCookieSales: function() {
+    var contentArea = document.getElementById('content_area');
+    var ul = document.createElement('ul');
+    var p = document.createElement('p');
+    var li;
+    var li2 = document.createElement('li');
+    p.textContent = this.name;
+    for (var i = 0; i < this.storeHours.length; i++) {
+      li = document.createElement('li');
+      li.textContent = this.storeHours[i] + ': ' + this.cookiesPerHour[i] + ' cookies';
+      ul.appendChild(li);
+    }
+    li2.textContent = 'Total: ' + this.total + ' cookies';
+    ul.appendChild(li2);
+    contentArea.appendChild(p);
+    contentArea.appendChild(ul);
+  }
 };
 
+cookieStoreFour.sumDailyCookies();
+cookieStoreFour.listHourlyCookieSales();
 console.log(cookieStoreFour);
 
 var cookieStoreFive = {
@@ -175,7 +253,7 @@ var cookieStoreFive = {
     //var total = 0;
     for (var i = 0; i < this.storeHours.length; i++) {
       //console.log(this.customersPerHour()); <--how to check stuff
-      var numCookies = this.customersPerHour() * this.avgCustomerCookieSale;
+      var numCookies = Math.round(this.customersPerHour() * this.avgCustomerCookieSale);
       this.cookiesPerHour.push(numCookies);
     }
     console.log(this.cookiesPerHour);
@@ -190,8 +268,27 @@ var cookieStoreFive = {
     this.total = sum;
     console.log(this.total);
   },
+  listHourlyCookieSales: function() {
+    var contentArea = document.getElementById('content_area');
+    var ul = document.createElement('ul');
+    var p = document.createElement('p');
+    var li;
+    var li2 = document.createElement('li');
+    p.textContent = this.name;
+    for (var i = 0; i < this.storeHours.length; i++) {
+      li = document.createElement('li');
+      li.textContent = this.storeHours[i] + ': ' + this.cookiesPerHour[i] + ' cookies';
+      ul.appendChild(li);
+    }
+    li2.textContent = 'Total: ' + this.total + ' cookies';
+    ul.appendChild(li2);
+    contentArea.appendChild(p);
+    contentArea.appendChild(ul);
+  }
 };
 
+cookieStoreFive.sumDailyCookies();
+cookieStoreFive.listHourlyCookieSales();
 console.log(cookieStoreFive);
 
 cookieStoreOne.sumDailyCookies();
