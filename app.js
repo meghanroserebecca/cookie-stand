@@ -16,7 +16,7 @@ var cookieStoreOne = {
     //var total = 0;
     for (var i = 0; i < this.storeHours.length; i++) {
       //console.log(this.customersPerHour()); <--how to check stuff
-      var numCookies = this.customersPerHour() * this.avgCustomerCookieSale;
+      var numCookies = Math.round(this.customersPerHour() * this.avgCustomerCookieSale);
       this.cookiesPerHour.push(numCookies);
     }
     console.log('message', this.cookiesPerHour);
@@ -31,9 +31,28 @@ var cookieStoreOne = {
     this.total = sum;
     console.log(this.total);
   },
+  listHourlyCookieSales: function() {
+    var contentArea = document.getElementById('content_area');
+    var ul = document.createElement('ul');
+    var p = document.createElement('p');
+    var li;
+    var li2 = document.createElement('li');
+    p.textContent = this.name;
+    for (var i = 0; i < this.storeHours.length; i++) {
+      li = document.createElement('li');
+      li.textContent = this.storeHours[i] + ': ' + this.cookiesPerHour[i] + ' cookies';
+      ul.appendChild(li);
+    }
+    li2.textContent = 'Total: ' + this.total + ' cookies';
+    ul.appendChild(li2);
+    contentArea.appendChild(p);
+    contentArea.appendChild(ul);
+  }
 };
 
+cookieStoreOne.sumDailyCookies();
 console.log(cookieStoreOne);
+cookieStoreOne.listHourlyCookieSales();
 
 var cookieStoreTwo = {
   name: 'SeaTac Airport',
