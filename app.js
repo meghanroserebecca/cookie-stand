@@ -9,7 +9,7 @@ function CookieStore(storeName, minHourlyCustomers, maxHourlyCustomers, avgCusto
   this.avgCustomerCookieSale = avgCustomerCookieSale;
   this.cookiesPerHour = [];
   this.total = 0;
-  this.hours = ['6am', '7am', '8 am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+  this.openHours = 15;
 }
 
 CookieStore.prototype.logStoreName = function () {
@@ -24,7 +24,7 @@ CookieStore.prototype.customersPerHour = function getRandomIntInclusive() {
 
 CookieStore.prototype.cookiesByTheHour = function () {
   //var total = 0;
-  for (var i = 0; i < this.hours.length; i++) {
+  for (var i = 0; i < this.openHours; i++) {
     //console.log(this.customersPerHour()); <--how to check stuff
     var numCookies = Math.round(this.customersPerHour() * this.avgCustomerCookieSale);
     this.cookiesPerHour.push(numCookies);
@@ -43,7 +43,7 @@ CookieStore.prototype.toHTML = function () {
   nameTableHeader.textContent = this.name;
   tableRow.appendChild(nameTableHeader);
 
-  for (var i = 0; i < this.hours.length; i++){
+  for (var i = 0; i < this.openHours; i++){
     //var hourlyTableData1 = document.createElement('td');
     var hourlyTableData2 = document.createElement('td');
     //hourlyTableData1.textContent = this.hours[i];
@@ -133,4 +133,72 @@ sumHourlyTotals();
     hourTotalsTableFooter = document.createElement('td');
     hourTotalsTableFooter.textContent =
   }
+}*/
+
+var storeForm = document.getElementById('chat_form');
+var messages = [];
+
+storeForm.addEventListener('submit', handleStoreSubmit);
+
+function handleStoreSubmit(event) {
+  event.preventDefault();
+  console.log(event);
+
+  var storeName = event.target.store_name.value;
+  var minCust = event.target.min_cust.value;
+  var maxCust = event.target.max_cust.value;
+  var avgCookies = event.target.avg_cookies.value;
+
+  var newMessage = new ChatMessage(storeName, minCust, maxCust, avgCookies);
+  messages.push(newMessage);
+
+  event.target.store_name.value = '';
+  event.target.min_cust.value = '';
+  event.target.max_cust.value = '';
+  event.target.avg_cookies.value = '';
+
+  renderChat();
+  console.log(messages);
+}
+
+function ChatMessage(storeName, minCust, maxCust, avgCookies){
+  this.storeName = storeName;
+  this.minCust = minCust;
+  this.maxCust = maxCust;
+  this.avgCookies = avgCookies;
+
+  renderChat();
+}
+
+function renderChat() {
+  var chatSection = document.getElementById('chat_messages');
+  var messageParagraph;
+  var storeName;
+  var minCust;
+  var maxCust;
+  var avgCookies;
+
+  chatSection.textContent = '';
+  for (var i = 0; i < messages.length; i++) {
+    messageParagraph = document.createElement('p');
+    storeName = messages[i].storeName;
+    minCust = messages[i].minCust;
+    maxCust = messages[i].maxCust;
+    avgCookies = messages[i].avgCookies;
+
+    messageParagraph.textContent = storeName + ': ' + minCust + ': ' + maxCust + ': ' + avgCookies;
+
+    chatSection.appendChild(messageParagraph);
+  }
+}
+
+/*function renderNewStoreRow(){
+  var storeTable = document.getElementById('store_table');
+  var tableRow = document.createElement('tr');
+  var newStoreRow = document.createElement('td');
+  var poorlyNamedVar;
+
+  tableRow.appendChild(newStoreRow);
+
+  for (var i = 0; i)
 }*/
