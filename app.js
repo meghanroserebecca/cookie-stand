@@ -109,6 +109,32 @@ alki.toHTML();
 console.log(alki.cookiesPerHour);
 console.log(alki.total);
 
+var storeForm = document.getElementById('chat_form');
+var messages = [];
+
+storeForm.addEventListener('submit', handleStoreSubmit);
+
+function handleStoreSubmit(event) {
+  event.preventDefault();
+  console.log(event);
+
+  var storeName = event.target.store_name.value;
+  var minHourlyCustomers = parseInt(event.target.min_cust.value);
+  var maxHourlyCustomers = parseInt(event.target.max_cust.value);
+  var avgCustomerCookieSale = parseInt(event.target.avg_cookies.value);
+
+  var newStore = new CookieStore(storeName, minHourlyCustomers, maxHourlyCustomers, avgCustomerCookieSale);
+  messages.push(newStore);
+  console.log(newStore);
+  newStore = new CookieStore(storeName, minHourlyCustomers, maxHourlyCustomers, avgCustomerCookieSale);
+  newStore.toHTML();
+
+  event.target.store_name.value = '';
+  event.target.min_cust.value = '';
+  event.target.max_cust.value = '';
+  event.target.avg_cookies.value = '';
+}
+
 /*var cookieStoreHourlySales = [pike, seaTacAirport, seattleCenter, capitolHill, alki];
 
 function sumHourlyTotals(){
@@ -133,72 +159,4 @@ sumHourlyTotals();
     hourTotalsTableFooter = document.createElement('td');
     hourTotalsTableFooter.textContent =
   }
-}*/
-
-var storeForm = document.getElementById('chat_form');
-var messages = [];
-
-storeForm.addEventListener('submit', handleStoreSubmit);
-
-function handleStoreSubmit(event) {
-  event.preventDefault();
-  console.log(event);
-
-  var storeName = event.target.store_name.value;
-  var minCust = event.target.min_cust.value;
-  var maxCust = event.target.max_cust.value;
-  var avgCookies = event.target.avg_cookies.value;
-
-  var newMessage = new ChatMessage(storeName, minCust, maxCust, avgCookies);
-  messages.push(newMessage);
-
-  event.target.store_name.value = '';
-  event.target.min_cust.value = '';
-  event.target.max_cust.value = '';
-  event.target.avg_cookies.value = '';
-
-  renderChat();
-  console.log(messages);
-}
-
-function ChatMessage(storeName, minCust, maxCust, avgCookies){
-  this.storeName = storeName;
-  this.minCust = minCust;
-  this.maxCust = maxCust;
-  this.avgCookies = avgCookies;
-
-  renderChat();
-}
-
-function renderChat() {
-  var chatSection = document.getElementById('chat_messages');
-  var messageParagraph;
-  var storeName;
-  var minCust;
-  var maxCust;
-  var avgCookies;
-
-  chatSection.textContent = '';
-  for (var i = 0; i < messages.length; i++) {
-    messageParagraph = document.createElement('p');
-    storeName = messages[i].storeName;
-    minCust = messages[i].minCust;
-    maxCust = messages[i].maxCust;
-    avgCookies = messages[i].avgCookies;
-
-    messageParagraph.textContent = storeName + ': ' + minCust + ': ' + maxCust + ': ' + avgCookies;
-
-    chatSection.appendChild(messageParagraph);
-  }
-}
-
-/*function renderNewStoreRow(){
-  var storeTable = document.getElementById('store_table');
-  var tableRow = document.createElement('tr');
-  var newStoreRow = document.createElement('td');
-  var poorlyNamedVar;
-
-  tableRow.appendChild(newStoreRow);
-
-  for (var i = 0; i)
 }*/
