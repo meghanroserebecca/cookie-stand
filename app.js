@@ -123,16 +123,18 @@ function handleStoreSubmit(event) {
   var maxHourlyCustomers = parseInt(event.target.max_cust.value);
   var avgCustomerCookieSale = parseInt(event.target.avg_cookies.value);
 
-  var newStore = new CookieStore(storeName, minHourlyCustomers, maxHourlyCustomers, avgCustomerCookieSale);
-  messages.push(newStore);
-  console.log(newStore);
-  newStore = new CookieStore(storeName, minHourlyCustomers, maxHourlyCustomers, avgCustomerCookieSale);
-  newStore.toHTML();
+  if (isNaN(avgCustomerCookieSale)) {
+    alert('Avg. Customer Cookies must be entered as number');
+  } else {var newStore = new CookieStore(storeName, minHourlyCustomers, maxHourlyCustomers, avgCustomerCookieSale);
+    messages.push(newStore);
+    console.log(newStore);
+    newStore = new CookieStore(storeName, minHourlyCustomers, maxHourlyCustomers, avgCustomerCookieSale);
+    newStore.toHTML();
 
-  event.target.store_name.value = '';
-  event.target.min_cust.value = '';
-  event.target.max_cust.value = '';
-  event.target.avg_cookies.value = '';
+    event.target.store_name.value = '';
+    event.target.min_cust.value = '';
+    event.target.max_cust.value = '';
+    event.target.avg_cookies.value = '';}
 }
 
 /*var cookieStoreHourlySales = [pike, seaTacAirport, seattleCenter, capitolHill, alki];
