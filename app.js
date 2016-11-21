@@ -1,7 +1,6 @@
 'use strict';
 
 var hours = ['6am', '7am', '8 am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
-var cookiesPerHour;
 
 function CookieStore(storeName, minHourlyCustomers, maxHourlyCustomers, avgCustomerCookieSale) {
   this.name = storeName;
@@ -9,7 +8,9 @@ function CookieStore(storeName, minHourlyCustomers, maxHourlyCustomers, avgCusto
   this.maxHourlyCustomers = maxHourlyCustomers;
   this.avgCustomerCookieSale = avgCustomerCookieSale;
   this.cookiesPerHour = [];
+  this.totalsArray = [];
   this.total = 0;
+  this.grandTotal = 0;
   this.openHours = 15;
 }
 
@@ -79,6 +80,45 @@ function renderHeaderRow() {
 
 renderHeaderRow();
 
+CookieStore.prototype.sumHourlyTotals = function () {
+  var totalsArray = [];
+  var hourTotal;
+  var cookiesPerHour = this.cookiesPerHour;
+
+  for (var i = 0; i < hours.length; i++) {
+    storeList[0].cookiesPerHour.length[0];
+    for (var j = 0; j < cookiesPerHour.length; j++) {
+      hourTotal += storeList[j].cookiesPerHour[i];
+      totalsArray.push(hourTotal);
+      this.grandTotal += hourTotal;
+    }
+  }
+  totalsArray.push(grandTotal);
+  return totalsArray;
+};
+
+sumHourlyTotals();
+/*function renderFooterRow() {
+  var storeTable = document.getElementById('store_table');
+  var tableRow = document.createElement('tr');
+  var totalTableFooter = document.createElement('th');
+  var hourlyTableFooter;
+
+  for (var i = 0; i < hours.length; i++){
+    hourlyTableFooter = document.createElement('th');
+    hourlyTableFooter.textContent = this.totalsArray[i];
+    tableRow.appendChild(hourlyTableFooter);
+  }
+  totalTableFooter.textContent = 'Hourly Totals';
+  tableRow.appendChild(totalTableFooter);
+
+  storeTable.appendChild(tableRow);
+}
+
+renderFooterRow();*/
+
+
+
 var pike = new CookieStore('1st & Pike', 23, 65, 6.3);
 
 var seaTacAirport = new CookieStore('SeaTac Airport', 3, 23, 1.2);
@@ -125,22 +165,3 @@ function handleStoreSubmit(event) {
 }
 
 console.log(storeList);
-
-function sumHourlyTotals() {
-  var hours = storeList[0].cookiesPerHour.length;
-  var totalsArray = [];
-  var grandTotal = 0;
-  var hourTotal;
-  for (var i = 0; i < hours; i++) {
-    storeList[0].cookiesPerHour.length[0];
-  }
-  for (var j = 0; j < cookiesPerHour.length; j++) {
-    hourTotal += stores[j].cookiesPerHour[hours];
-    totalsArray.push(hourTotal);
-    grandTotal += hourTotal;
-  }
-  totalsArray.push(grandTotal);
-  storeTable.appendChild(totalsArray);
-}
-
-sumHourlyTotals();
