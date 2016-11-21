@@ -1,6 +1,7 @@
 'use strict';
 
 var hours = ['6am', '7am', '8 am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+var cookiesPerHour;
 
 function CookieStore(storeName, minHourlyCustomers, maxHourlyCustomers, avgCustomerCookieSale) {
   this.name = storeName;
@@ -123,14 +124,23 @@ function handleStoreSubmit(event) {
     event.target.avg_cookies.value = '';}
 }
 
-/*function sumHourlyTotals() {
-  results = [];
-  for (var i = 0; i < storeList.length; i++) {
-    return results.push(storeList[i].cookiesPerHour);
+console.log(storeList);
+
+function sumHourlyTotals() {
+  var hours = storeList[0].cookiesPerHour.length;
+  var totalsArray = [];
+  var grandTotal = 0;
+  var hourTotal;
+  for (var i = 0; i < hours; i++) {
+    storeList[0].cookiesPerHour.length[0];
   }
-  for (var k = 0; k < cookiesPerHour.length; k++) {
-    return cookiesPerHour[i];
+  for (var j = 0; j < cookiesPerHour.length; j++) {
+    hourTotal += stores[j].cookiesPerHour[hours];
+    totalsArray.push(hourTotal);
+    grandTotal += hourTotal;
   }
+  totalsArray.push(grandTotal);
+  storeTable.appendChild(totalsArray);
 }
 
-sumHourlyTotals();*/
+sumHourlyTotals();

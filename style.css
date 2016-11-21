@@ -12,7 +12,7 @@ nav {
 }
 
 li {
-
+  display: inline-block;
 }
 
 .nav_li {
@@ -31,15 +31,30 @@ div.clear {
   clear: both;
 }
 
-h1{
+h1 {
   float: clear;
   margin: 0, auto;
   font-weight: bold;
   color: #ED5153;
 }
 
-img.top_banner {
-  border-width: thick;
+h2 {
+  margin: 0 auto;
+  width: 400 px;
+  border-bottom: 5px solid #ED5153;
+  color: #c4870d;
+}
+
+p.home {
+  border-bottom: 5px solid #ED5153;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #7b8faf;
+  color: #464849;
+}
+
+img {
+  border-width: 10px;
   border-style: outset;
   border-color: #9943db;
 }
@@ -95,15 +110,13 @@ ul.li.eat_buy {
   animation-duration: 10s;
   animation-direction: alternate;
   position: absolute;
-  left: 20px;
-  bottom: 20px;
+  left: 92px;
+  bottom: 5px;
 }
 
 .bottom_two {
-  position: fixed;
+  position: absolute;
   opacity: .5;
-  left: 0px;
-  bottom: 0px;
 }
 
 select {
@@ -127,9 +140,14 @@ a.button {
 
     text-decoration: none;
     color: initial;
-    padding: 5px;
     background-color: #800bed;
     font-weight: bold;
+    width: 230px;
+    padding: 10px 40px;
+    font-size: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 0 auto;
 }
 
 footer {
