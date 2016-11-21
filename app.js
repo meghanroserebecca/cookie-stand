@@ -80,7 +80,7 @@ function renderHeaderRow() {
 
 renderHeaderRow();
 
-CookieStore.prototype.sumHourlyTotals = function () {
+/*CookieStore.prototype.sumHourlyTotals = function () {
   var totalsArray = [];
   var hourTotal;
   var cookiesPerHour = this.cookiesPerHour;
