@@ -131,22 +131,28 @@ console.log(storeList);
 function renderFooterRow() {
   var storeTable = document.getElementById('store_table');
   var tableFooterRow = document.createElement('tr');
-  //var totalTableFooter = document.createElement('th');
-  var hourlyTableData = document.createElement('td');
+  var hourlyTotals = document.createElement('th');
+  hourlyTotals.textContent = 'Hourly Totals';
+  tableFooterRow.appendChild(hourlyTotals);
   var totalsArray = [];
-  var hourTotal = 0;
-  //var grandTotal = 0;
+  var totalTableFooter = document.createElement('td');
 
   for (var i = 0; i < hours.length; i++) {
+    var hourTotal = 0;
+    var grandTotal = 0;
     for (var j = 0; j < storeList.length; j++) {
       hourTotal += storeList[j].cookiesPerHour[i];
-      //this.grandTotal += hourTotal;
     }
+    grandTotal += hourTotal;
+    console.log(hourTotal);
     totalsArray.push(hourTotal);
-    return totalsArray;
+    totalTableFooter.textContent = grandTotal;
+    tableFooterRow.appendChild(totalTableFooter);
   }
+  console.log(totalsArray);
 
   for (var k = 0; k < totalsArray.length; k++) {
+    var hourlyTableData = document.createElement('td');
     hourlyTableData.textContent = totalsArray[k];
     tableFooterRow.appendChild(hourlyTableData);
   }
