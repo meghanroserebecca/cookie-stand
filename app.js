@@ -136,18 +136,16 @@ function renderFooterRow() {
   tableFooterRow.appendChild(hourlyTotals);
   var totalsArray = [];
   var totalTableFooter = document.createElement('td');
+  var grandTotal = 0;
 
   for (var i = 0; i < hours.length; i++) {
     var hourTotal = 0;
-    var grandTotal = 0;
     for (var j = 0; j < storeList.length; j++) {
       hourTotal += storeList[j].cookiesPerHour[i];
     }
     grandTotal += hourTotal;
     console.log(hourTotal);
     totalsArray.push(hourTotal);
-    totalTableFooter.textContent = grandTotal;
-    tableFooterRow.appendChild(totalTableFooter);
   }
   console.log(totalsArray);
 
@@ -156,6 +154,9 @@ function renderFooterRow() {
     hourlyTableData.textContent = totalsArray[k];
     tableFooterRow.appendChild(hourlyTableData);
   }
+
+  totalTableFooter.textContent = grandTotal;
+  tableFooterRow.appendChild(totalTableFooter);
 
   storeTable.appendChild(tableFooterRow);
 }
