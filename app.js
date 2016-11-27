@@ -80,44 +80,6 @@ function renderHeaderRow() {
 
 renderHeaderRow();
 
-/*CookieStore.prototype.sumHourlyTotals = function () {
-  var totalsArray = [];
-  var hourTotal;
-  var cookiesPerHour = this.cookiesPerHour;
-
-  for (var i = 0; i < hours.length; i++) {
-    storeList[0].cookiesPerHour.length[0];
-    for (var j = 0; j < cookiesPerHour.length; j++) {
-      hourTotal += storeList[j].cookiesPerHour[i];
-      totalsArray.push(hourTotal);
-      this.grandTotal += hourTotal;
-    }
-  }
-  totalsArray.push(grandTotal);
-  return totalsArray;
-};
-
-sumHourlyTotals();
-/*function renderFooterRow() {
-  var storeTable = document.getElementById('store_table');
-  var tableRow = document.createElement('tr');
-  var totalTableFooter = document.createElement('th');
-  var hourlyTableFooter;
-
-  for (var i = 0; i < hours.length; i++){
-    hourlyTableFooter = document.createElement('th');
-    hourlyTableFooter.textContent = this.totalsArray[i];
-    tableRow.appendChild(hourlyTableFooter);
-  }
-  totalTableFooter.textContent = 'Hourly Totals';
-  tableRow.appendChild(totalTableFooter);
-
-  storeTable.appendChild(tableRow);
-}
-
-renderFooterRow();*/
-
-
 
 var pike = new CookieStore('1st & Pike', 23, 65, 6.3);
 
@@ -165,3 +127,31 @@ function handleStoreSubmit(event) {
 }
 
 console.log(storeList);
+
+function renderFooterRow() {
+  var storeTable = document.getElementById('store_table');
+  var tableFooterRow = document.createElement('tr');
+  //var totalTableFooter = document.createElement('th');
+  var hourlyTableData = document.createElement('td');
+  var totalsArray = [];
+  var hourTotal = 0;
+  //var grandTotal = 0;
+
+  for (var i = 0; i < hours.length; i++) {
+    for (var j = 0; j < storeList.length; j++) {
+      hourTotal += storeList[j].cookiesPerHour[i];
+      //this.grandTotal += hourTotal;
+    }
+    totalsArray.push(hourTotal);
+    return totalsArray;
+  }
+
+  for (var k = 0; k < totalsArray.length; k++) {
+    hourlyTableData.textContent = totalsArray[k];
+    tableFooterRow.appendChild(hourlyTableData);
+  }
+
+  storeTable.appendChild(tableFooterRow);
+}
+
+renderFooterRow();
